@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bo3424xtj5etf"]
+
+[ext_resource type="FontFile" uid="uid://b6n7xex6d8ctd" path="res://Fonts/Plain Germanica.ttf" id="1_epjbf"]
+
+[resource]
+default_font = ExtResource("1_epjbf")
+default_font_size = 24

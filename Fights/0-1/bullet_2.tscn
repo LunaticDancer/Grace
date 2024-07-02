@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://b15c26b2sa86s"]
+
+[ext_resource type="Script" path="res://Fights/0-1/bullet_lerp_chase.gd" id="1_7kict"]
+[ext_resource type="Texture2D" uid="uid://dun481iur805v" path="res://icon.svg" id="2_sjxvt"]
+[ext_resource type="PackedScene" uid="uid://dqjnyuwi6j8f1" path="res://Fights/grace_emitter.tscn" id="3_deoid"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u50mu"]
+radius = 20.0
+
+[node name="Bullet2" type="Area2D" groups=["kills_player"]]
+script = ExtResource("1_7kict")
+lerp_speed = 0.01
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 11
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_sjxvt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_u50mu")
+
+[node name="GraceEmitter" parent="." instance=ExtResource("3_deoid")]
+far_end = 100
+near_end = 25
+max_grace_value = 50
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bx108380bvr8"]
+
+[ext_resource type="Script" path="res://Fights/1-1/bullet_straight_trajectory_simple.gd" id="1_4psbo"]
+[ext_resource type="Texture2D" uid="uid://dun481iur805v" path="res://icon.svg" id="2_1popt"]
+[ext_resource type="PackedScene" uid="uid://dqjnyuwi6j8f1" path="res://Fights/grace_emitter.tscn" id="3_pgadk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u50mu"]
+
+[node name="Bullet1" type="Area2D" groups=["kills_player"]]
+script = ExtResource("1_4psbo")
+speed = 250
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_1popt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_u50mu")
+
+[node name="GraceEmitter" parent="." instance=ExtResource("3_pgadk")]
+far_end = 100
+near_end = 15
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

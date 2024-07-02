@@ -1,0 +1,767 @@
+[gd_scene load_steps=12 format=3 uid="uid://dfm2k7fqv04no"]
+
+[ext_resource type="Script" path="res://_game_controller.gd" id="1_v82dh"]
+[ext_resource type="FontFile" uid="uid://d2jjtu4ed0xu" path="res://Fonts/Shadowed Germanica.ttf" id="2_31rs3"]
+[ext_resource type="Texture2D" uid="uid://dun481iur805v" path="res://icon.svg" id="2_cwxmk"]
+[ext_resource type="Theme" uid="uid://bo3424xtj5etf" path="res://Fonts/Grace_UI_theme.tres" id="2_qx5bf"]
+[ext_resource type="PackedScene" uid="uid://m0kmindjm1wr" path="res://player.tscn" id="2_yjiyq"]
+[ext_resource type="Script" path="res://fight_button.gd" id="5_gdo6g"]
+[ext_resource type="Resource" uid="uid://cvmvjg8jnm8y2" path="res://FightResources/0-1.tres" id="7_aj354"]
+[ext_resource type="Resource" uid="uid://cy5t6npqbypt0" path="res://FightResources/1-1.tres" id="7_wih11"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yvgb7"]
+bg_color = Color(0.262745, 0.196078, 0.14902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nsrni"]
+content_margin_left = 1.0
+bg_color = Color(0.662745, 0.411765, 0.376471, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.556863, 0.227451, 0.278431, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4d0ry"]
+bg_color = Color(0.847059, 0.705882, 0.478431, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.611765, 0.470588, 0.160784, 1)
+
+[node name="GameController" type="Control" groups=["game_controller"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v82dh")
+player_scene = ExtResource("2_yjiyq")
+
+[node name="Background" type="ColorRect" parent="."]
+z_index = -1000
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.341176, 0.337255, 0.278431, 1)
+
+[node name="GameWorld" type="Node2D" parent="."]
+
+[node name="PlayerSpawnPosition" type="Node2D" parent="."]
+position = Vector2(225, 640)
+
+[node name="BossSpawnPosition" type="Node2D" parent="."]
+position = Vector2(225, 200)
+
+[node name="MainMenuContainer" type="VBoxContainer" parent="."]
+visible = false
+z_index = 1000
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -142.5
+offset_top = -164.5
+offset_right = 142.5
+offset_bottom = 135.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="GameTitle" type="Label" parent="MainMenuContainer"]
+layout_mode = 2
+theme = ExtResource("2_qx5bf")
+theme_override_colors/font_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_fonts/font = ExtResource("2_31rs3")
+theme_override_font_sizes/font_size = 120
+text = "Grace"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayButton" type="Button" parent="MainMenuContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_qx5bf")
+theme_override_colors/font_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_colors/font_pressed_color = Color(0.556863, 0.227451, 0.278431, 1)
+theme_override_colors/font_hover_color = Color(0.662745, 0.411765, 0.376471, 1)
+theme_override_colors/font_focus_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_colors/icon_normal_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_pressed_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_hover_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_hover_pressed_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_focus_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_font_sizes/font_size = 32
+text = "Play"
+icon_alignment = 1
+expand_icon = true
+
+[node name="SettingsButton" type="Button" parent="MainMenuContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_qx5bf")
+theme_override_colors/font_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_colors/font_pressed_color = Color(0.556863, 0.227451, 0.278431, 1)
+theme_override_colors/font_hover_color = Color(0.662745, 0.411765, 0.376471, 1)
+theme_override_colors/font_focus_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_colors/icon_normal_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_pressed_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_hover_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_hover_pressed_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_focus_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_font_sizes/font_size = 32
+text = "Settings"
+icon_alignment = 1
+expand_icon = true
+
+[node name="QuitButton" type="Button" parent="MainMenuContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_qx5bf")
+theme_override_colors/font_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_colors/font_pressed_color = Color(0.556863, 0.227451, 0.278431, 1)
+theme_override_colors/font_hover_color = Color(0.662745, 0.411765, 0.376471, 1)
+theme_override_colors/font_focus_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_colors/icon_normal_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_pressed_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_hover_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_hover_pressed_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_focus_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+icon_alignment = 1
+expand_icon = true
+
+[node name="LevelSelectContainer" type="VBoxContainer" parent="."]
+visible = false
+z_index = 1000
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelSelectScrollView" type="ScrollContainer" parent="LevelSelectContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="Content" type="VBoxContainer" parent="LevelSelectContainer/LevelSelectScrollView"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TutorialHeader" type="ColorRect" parent="LevelSelectContainer/LevelSelectScrollView/Content"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+color = Color(0.105882, 0.105882, 0.0901961, 1)
+
+[node name="Label" type="Label" parent="LevelSelectContainer/LevelSelectScrollView/Content/TutorialHeader"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_qx5bf")
+theme_override_colors/font_color = Color(0.52549, 0.333333, 0.231373, 1)
+theme_override_font_sizes/font_size = 40
+text = "Tutorial"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Divider" type="Control" parent="LevelSelectContainer/LevelSelectScrollView/Content"]
+layout_mode = 2
+
+[node name="TutorialLevels" type="HBoxContainer" parent="LevelSelectContainer/LevelSelectScrollView/Content"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Sage" type="TextureButton" parent="LevelSelectContainer/LevelSelectScrollView/Content/TutorialLevels"]
+layout_mode = 2
+texture_normal = ExtResource("2_cwxmk")
+stretch_mode = 0
+script = ExtResource("5_gdo6g")
+fight_data = ExtResource("7_aj354")
+
+[node name="Divider2" type="Control" parent="LevelSelectContainer/LevelSelectScrollView/Content"]
+layout_mode = 2
+
+[node name="CorpusHeader" type="ColorRect" parent="LevelSelectContainer/LevelSelectScrollView/Content"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+color = Color(0.105882, 0.105882, 0.0901961, 1)
+
+[node name="Label" type="Label" parent="LevelSelectContainer/LevelSelectScrollView/Content/CorpusHeader"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_qx5bf")
+theme_override_colors/font_color = Color(0.52549, 0.333333, 0.231373, 1)
+theme_override_font_sizes/font_size = 40
+text = "Corpus"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Divider3" type="Control" parent="LevelSelectContainer/LevelSelectScrollView/Content"]
+layout_mode = 2
+
+[node name="CorpusLevels" type="HBoxContainer" parent="LevelSelectContainer/LevelSelectScrollView/Content"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Enemy1" type="TextureButton" parent="LevelSelectContainer/LevelSelectScrollView/Content/CorpusLevels"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource("2_cwxmk")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("5_gdo6g")
+fight_data = ExtResource("7_wih11")
+
+[node name="Enemy2" type="TextureButton" parent="LevelSelectContainer/LevelSelectScrollView/Content/CorpusLevels"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource("2_cwxmk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Enemy3" type="TextureButton" parent="LevelSelectContainer/LevelSelectScrollView/Content/CorpusLevels"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource("2_cwxmk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Divider4" type="Control" parent="LevelSelectContainer/LevelSelectScrollView/Content"]
+layout_mode = 2
+
+[node name="CorpusLevels2" type="HBoxContainer" parent="LevelSelectContainer/LevelSelectScrollView/Content"]
+layout_mode = 2
+alignment = 1
+
+[node name="Bestia" type="TextureButton" parent="LevelSelectContainer/LevelSelectScrollView/Content/CorpusLevels2"]
+layout_mode = 2
+texture_normal = ExtResource("2_cwxmk")
+stretch_mode = 0
+
+[node name="Divider8" type="Control" parent="LevelSelectContainer/LevelSelectScrollView/Content"]
+layout_mode = 2
+
+[node name="SangueHeader" type="ColorRect" parent="LevelSelectContainer/LevelSelectScrollView/Content"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+color = Color(0.105882, 0.105882, 0.0901961, 1)
+
+[node name="Label" type="Label" parent="LevelSelectContainer/LevelSelectScrollView/Content/SangueHeader"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_qx5bf")
+theme_override_colors/font_color = Color(0.52549, 0.333333, 0.231373, 1)
+theme_override_font_sizes/font_size = 40
+text = "Sangue"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Divider5" type="Control" parent="LevelSelectContainer/LevelSelectScrollView/Content"]
+layout_mode = 2
+
+[node name="SangueLevels" type="HBoxContainer" parent="LevelSelectContainer/LevelSelectScrollView/Content"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Enemy1" type="TextureButton" parent="LevelSelectContainer/LevelSelectScrollView/Content/SangueLevels"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource("2_cwxmk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Enemy2" type="TextureButton" parent="LevelSelectContainer/LevelSelectScrollView/Content/SangueLevels"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource("2_cwxmk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Enemy3" type="TextureButton" parent="LevelSelectContainer/LevelSelectScrollView/Content/SangueLevels"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource("2_cwxmk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Divider6" type="Control" parent="LevelSelectContainer/LevelSelectScrollView/Content"]
+layout_mode = 2
+
+[node name="SangueLevels2" type="HBoxContainer" parent="LevelSelectContainer/LevelSelectScrollView/Content"]
+layout_mode = 2
+alignment = 1
+
+[node name="Cordium" type="TextureButton" parent="LevelSelectContainer/LevelSelectScrollView/Content/SangueLevels2"]
+layout_mode = 2
+texture_normal = ExtResource("2_cwxmk")
+stretch_mode = 0
+
+[node name="Divider9" type="Control" parent="LevelSelectContainer/LevelSelectScrollView/Content"]
+layout_mode = 2
+
+[node name="GloriaHeader" type="ColorRect" parent="LevelSelectContainer/LevelSelectScrollView/Content"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+color = Color(0.105882, 0.105882, 0.0901961, 1)
+
+[node name="Label" type="Label" parent="LevelSelectContainer/LevelSelectScrollView/Content/GloriaHeader"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_qx5bf")
+theme_override_colors/font_color = Color(0.52549, 0.333333, 0.231373, 1)
+theme_override_font_sizes/font_size = 40
+text = "Gloria"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Divider7" type="Control" parent="LevelSelectContainer/LevelSelectScrollView/Content"]
+layout_mode = 2
+
+[node name="GloriaLevels" type="HBoxContainer" parent="LevelSelectContainer/LevelSelectScrollView/Content"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Enemy1" type="TextureButton" parent="LevelSelectContainer/LevelSelectScrollView/Content/GloriaLevels"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource("2_cwxmk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Enemy2" type="TextureButton" parent="LevelSelectContainer/LevelSelectScrollView/Content/GloriaLevels"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource("2_cwxmk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Enemy3" type="TextureButton" parent="LevelSelectContainer/LevelSelectScrollView/Content/GloriaLevels"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource("2_cwxmk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Divider10" type="Control" parent="LevelSelectContainer/LevelSelectScrollView/Content"]
+layout_mode = 2
+
+[node name="GloriaLevels2" type="HBoxContainer" parent="LevelSelectContainer/LevelSelectScrollView/Content"]
+layout_mode = 2
+alignment = 1
+
+[node name="LuxAeternum" type="TextureButton" parent="LevelSelectContainer/LevelSelectScrollView/Content/GloriaLevels2"]
+layout_mode = 2
+texture_normal = ExtResource("2_cwxmk")
+stretch_mode = 0
+
+[node name="Divider11" type="Control" parent="LevelSelectContainer/LevelSelectScrollView/Content"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="BackToMenuButton" type="Button" parent="LevelSelectContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_qx5bf")
+theme_override_colors/font_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_colors/font_pressed_color = Color(0.556863, 0.227451, 0.278431, 1)
+theme_override_colors/font_hover_color = Color(0.662745, 0.411765, 0.376471, 1)
+theme_override_colors/font_focus_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_colors/icon_normal_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_pressed_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_hover_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_hover_pressed_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_focus_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_font_sizes/font_size = 64
+text = "Return"
+icon_alignment = 1
+expand_icon = true
+
+[node name="GameUiContainer" type="Control" parent="."]
+z_index = 1000
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseMenu" type="Panel" parent="GameUiContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -120.0
+offset_right = 120.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameUiContainer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="GameTitle" type="Label" parent="GameUiContainer/PauseMenu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_qx5bf")
+theme_override_colors/font_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_fonts/font = ExtResource("2_31rs3")
+theme_override_font_sizes/font_size = 60
+text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="GameUiContainer/PauseMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="ResumeButton" type="Button" parent="GameUiContainer/PauseMenu/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_qx5bf")
+theme_override_colors/font_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_colors/font_pressed_color = Color(0.556863, 0.227451, 0.278431, 1)
+theme_override_colors/font_hover_color = Color(0.662745, 0.411765, 0.376471, 1)
+theme_override_colors/font_focus_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_colors/icon_normal_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_pressed_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_hover_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_hover_pressed_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_focus_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_font_sizes/font_size = 32
+text = "Resume"
+icon_alignment = 1
+expand_icon = true
+
+[node name="QuitButton" type="Button" parent="GameUiContainer/PauseMenu/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_qx5bf")
+theme_override_colors/font_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_colors/font_pressed_color = Color(0.556863, 0.227451, 0.278431, 1)
+theme_override_colors/font_hover_color = Color(0.662745, 0.411765, 0.376471, 1)
+theme_override_colors/font_focus_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_colors/icon_normal_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_pressed_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_hover_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_hover_pressed_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_focus_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+icon_alignment = 1
+expand_icon = true
+
+[node name="GameOverScreen" type="Panel" parent="GameUiContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -120.0
+offset_right = 120.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameUiContainer/GameOverScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="GameUiContainer/GameOverScreen/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_qx5bf")
+theme_override_colors/font_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_fonts/font = ExtResource("2_31rs3")
+theme_override_font_sizes/font_size = 48
+text = "You Died"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="GameUiContainer/GameOverScreen/VBoxContainer"]
+layout_mode = 2
+
+[node name="RetryButton" type="Button" parent="GameUiContainer/GameOverScreen/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_qx5bf")
+theme_override_colors/font_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_colors/font_pressed_color = Color(0.556863, 0.227451, 0.278431, 1)
+theme_override_colors/font_hover_color = Color(0.662745, 0.411765, 0.376471, 1)
+theme_override_colors/font_focus_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_colors/icon_normal_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_pressed_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_hover_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_hover_pressed_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_focus_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_font_sizes/font_size = 32
+text = "Retry"
+icon_alignment = 1
+expand_icon = true
+
+[node name="QuitButton" type="Button" parent="GameUiContainer/GameOverScreen/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_qx5bf")
+theme_override_colors/font_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_colors/font_pressed_color = Color(0.556863, 0.227451, 0.278431, 1)
+theme_override_colors/font_hover_color = Color(0.662745, 0.411765, 0.376471, 1)
+theme_override_colors/font_focus_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_colors/icon_normal_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_pressed_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_hover_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_hover_pressed_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_focus_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+icon_alignment = 1
+expand_icon = true
+
+[node name="VictoryScreen" type="Panel" parent="GameUiContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -120.0
+offset_right = 120.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameUiContainer/VictoryScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="GameUiContainer/VictoryScreen/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_qx5bf")
+theme_override_colors/font_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_fonts/font = ExtResource("2_31rs3")
+theme_override_font_sizes/font_size = 48
+text = "Victory"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="GameUiContainer/VictoryScreen/VBoxContainer"]
+layout_mode = 2
+
+[node name="ContinueButton" type="Button" parent="GameUiContainer/VictoryScreen/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_qx5bf")
+theme_override_colors/font_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_colors/font_pressed_color = Color(0.556863, 0.227451, 0.278431, 1)
+theme_override_colors/font_hover_color = Color(0.662745, 0.411765, 0.376471, 1)
+theme_override_colors/font_focus_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_colors/icon_normal_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_pressed_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_hover_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_hover_pressed_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_focus_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_font_sizes/font_size = 32
+text = "Continue"
+icon_alignment = 1
+expand_icon = true
+
+[node name="RetryButton" type="Button" parent="GameUiContainer/VictoryScreen/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_qx5bf")
+theme_override_colors/font_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_colors/font_pressed_color = Color(0.556863, 0.227451, 0.278431, 1)
+theme_override_colors/font_hover_color = Color(0.662745, 0.411765, 0.376471, 1)
+theme_override_colors/font_focus_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.847059, 0.705882, 0.478431, 1)
+theme_override_colors/icon_normal_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_pressed_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_hover_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_hover_pressed_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_colors/icon_focus_color = Color(0.262745, 0.196078, 0.14902, 0)
+theme_override_font_sizes/font_size = 32
+text = "Retry"
+icon_alignment = 1
+expand_icon = true
+
+[node name="BossHP" type="ProgressBar" parent="GameUiContainer"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -58.0
+offset_bottom = 32.0
+grow_horizontal = 2
+theme = ExtResource("2_qx5bf")
+theme_override_styles/background = SubResource("StyleBoxFlat_yvgb7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_nsrni")
+value = 70.0
+show_percentage = false
+
+[node name="BossName" type="Label" parent="GameUiContainer"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 40.0
+offset_right = 212.0
+offset_bottom = 79.0
+theme = ExtResource("2_qx5bf")
+theme_override_colors/font_color = Color(0.92549, 0.85098, 0.839216, 1)
+theme_override_colors/font_outline_color = Color(0.262745, 0.196078, 0.14902, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 36
+text = "Lux Aeternum"
+
+[node name="GraceMeter" type="ProgressBar" parent="GameUiContainer"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -324.0
+offset_right = 20.0
+offset_bottom = -4.0
+grow_vertical = 0
+theme = ExtResource("2_qx5bf")
+theme_override_styles/background = SubResource("StyleBoxFlat_yvgb7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4d0ry")
+value = 70.0
+fill_mode = 3
+show_percentage = false
+
+[node name="PauseButton" type="Button" parent="GameUiContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -36.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = 36.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 28
+text = "II"
+
+[connection signal="pressed" from="MainMenuContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MainMenuContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="LevelSelectContainer/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]
+[connection signal="pressed" from="GameUiContainer/PauseMenu/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="GameUiContainer/PauseMenu/VBoxContainer/QuitButton" to="." method="_on_pause_menu_quit_button_pressed"]
+[connection signal="pressed" from="GameUiContainer/GameOverScreen/VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="GameUiContainer/GameOverScreen/VBoxContainer/QuitButton" to="." method="_on_pause_menu_quit_button_pressed"]
+[connection signal="pressed" from="GameUiContainer/VictoryScreen/VBoxContainer/ContinueButton" to="." method="_on_pause_menu_quit_button_pressed"]
+[connection signal="pressed" from="GameUiContainer/VictoryScreen/VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="GameUiContainer/PauseButton" to="." method="_on_pause_button_pressed"]

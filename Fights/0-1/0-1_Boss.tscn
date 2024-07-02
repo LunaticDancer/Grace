@@ -1,0 +1,133 @@
+[gd_scene load_steps=13 format=3 uid="uid://bi0us2bi7rlj5"]
+
+[ext_resource type="Script" path="res://Fights/0-1/0-1_Boss.gd" id="1_q6qtp"]
+[ext_resource type="PackedScene" uid="uid://bx108380bvr8" path="res://Fights/0-1/bullet_1.tscn" id="2_dnchh"]
+[ext_resource type="Texture2D" uid="uid://dun481iur805v" path="res://icon.svg" id="3_b78ei"]
+[ext_resource type="PackedScene" uid="uid://b15c26b2sa86s" path="res://Fights/0-1/bullet_2.tscn" id="3_bpj0c"]
+[ext_resource type="PackedScene" uid="uid://dqjnyuwi6j8f1" path="res://Fights/grace_emitter.tscn" id="4_kp6j5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hp78o"]
+size = Vector2(96, 96)
+
+[sub_resource type="Animation" id="Animation_tid5w"]
+resource_name = "phase_1"
+length = 3.704
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_b78ei")]
+}
+
+[sub_resource type="Animation" id="Animation_fj4h3"]
+resource_name = "phase_2"
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_pid1q"]
+resource_name = "phase_2_start"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawn_the_chaser"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_bktej"]
+resource_name = "phase_3"
+loop_mode = 1
+step = 0.05
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"power_word_gunfire"
+}, {
+"args": [],
+"method": &"power_word_gunfire"
+}, {
+"args": [],
+"method": &"power_word_gunfire"
+}, {
+"args": [],
+"method": &"power_word_gunfire"
+}, {
+"args": [],
+"method": &"power_word_gunfire"
+}, {
+"args": [],
+"method": &"power_word_gunfire"
+}, {
+"args": [],
+"method": &"power_word_gunfire"
+}, {
+"args": [],
+"method": &"power_word_gunfire"
+}, {
+"args": [],
+"method": &"power_word_gunfire"
+}, {
+"args": [],
+"method": &"power_word_gunfire"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_hu3s2"]
+resource_name = "phase_3_start"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lnu5a"]
+_data = {
+"phase_1": SubResource("Animation_tid5w"),
+"phase_2": SubResource("Animation_fj4h3"),
+"phase_2_start": SubResource("Animation_pid1q"),
+"phase_3": SubResource("Animation_bktej"),
+"phase_3_start": SubResource("Animation_hu3s2")
+}
+
+[node name="Monstrator" type="Area2D" groups=["kills_player"]]
+script = ExtResource("1_q6qtp")
+attack_pattern_odds_bag = Array[String](["attack_pattern_1"])
+bullet1 = ExtResource("2_dnchh")
+bullet2 = ExtResource("3_bpj0c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hp78o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 10
+texture = ExtResource("3_b78ei")
+
+[node name="GraceEmitter" parent="." instance=ExtResource("4_kp6j5")]
+far_end = 120
+near_end = 88
+max_grace_value = 70
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+callback_mode_method = 1
+libraries = {
+"": SubResource("AnimationLibrary_lnu5a")
+}
+movie_quit_on_finish = true
+next/phase_2_start = &"phase_2"
+next/phase_3_start = &"phase_3"

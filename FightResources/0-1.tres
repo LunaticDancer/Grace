@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cvmvjg8jnm8y2"]
+
+[ext_resource type="PackedScene" uid="uid://bi0us2bi7rlj5" path="res://Fights/0-1/0-1_Boss.tscn" id="1_hmyyj"]
+[ext_resource type="Script" path="res://FightResources/fight_resource.gd" id="2_nmal3"]
+
+[resource]
+script = ExtResource("2_nmal3")
+name = "Monstrator"
+max_hp = 1000.0
+boss_scene = ExtResource("1_hmyyj")

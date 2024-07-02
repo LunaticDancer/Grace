@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cy5t6npqbypt0"]
+
+[ext_resource type="PackedScene" uid="uid://bs7xp2saevkuw" path="res://Fights/1-1/1-1_Boss.tscn" id="1_7myxe"]
+[ext_resource type="Script" path="res://FightResources/fight_resource.gd" id="1_50yqy"]
+
+[resource]
+script = ExtResource("1_50yqy")
+name = "Inedia"
+max_hp = 1000
+boss_scene = ExtResource("1_7myxe")

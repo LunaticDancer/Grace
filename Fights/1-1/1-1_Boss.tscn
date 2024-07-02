@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://bs7xp2saevkuw"]
+
+[ext_resource type="Texture2D" uid="uid://dun481iur805v" path="res://icon.svg" id="1_e3acj"]
+[ext_resource type="Script" path="res://Fights/1-1/1-1_Boss.gd" id="1_irvmh"]
+[ext_resource type="PackedScene" uid="uid://crjts0dhcr5gn" path="res://Fights/1-1/bullet_1.tscn" id="2_04pfy"]
+[ext_resource type="PackedScene" uid="uid://dqjnyuwi6j8f1" path="res://Fights/grace_emitter.tscn" id="2_f63kv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hp78o"]
+size = Vector2(96, 96)
+
+[sub_resource type="Animation" id="Animation_tid5w"]
+resource_name = "attack_pattern_1"
+length = 3.704
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_e3acj")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 1.3, 2.1, 2.9, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"star_attack_straight"
+}, {
+"args": [],
+"method": &"star_attack_opposite"
+}, {
+"args": [],
+"method": &"star_attack_straight"
+}, {
+"args": [],
+"method": &"star_attack_opposite"
+}, {
+"args": [],
+"method": &"start_next_attack"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lnu5a"]
+_data = {
+"attack_pattern_1": SubResource("Animation_tid5w")
+}
+
+[node name="Inedia" type="Area2D" groups=["kills_player"]]
+script = ExtResource("1_irvmh")
+attack_pattern_odds_bag = Array[String](["attack_pattern_1"])
+bullet1 = ExtResource("2_04pfy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hp78o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 10
+texture = ExtResource("1_e3acj")
+
+[node name="GraceEmitter" parent="." instance=ExtResource("2_f63kv")]
+near_end = 70
+max_grace_value = 40
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+callback_mode_method = 1
+libraries = {
+"": SubResource("AnimationLibrary_lnu5a")
+}
+movie_quit_on_finish = true
