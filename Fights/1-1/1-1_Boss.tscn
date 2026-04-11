@@ -1,12 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://bs7xp2saevkuw"]
+[gd_scene format=3 uid="uid://bs7xp2saevkuw"]
 
 [ext_resource type="Texture2D" uid="uid://dun481iur805v" path="res://icon.svg" id="1_e3acj"]
-[ext_resource type="Script" path="res://Fights/1-1/1-1_Boss.gd" id="1_irvmh"]
+[ext_resource type="Script" uid="uid://dckv7i78l301f" path="res://Fights/1-1/1-1_Boss.gd" id="1_irvmh"]
 [ext_resource type="PackedScene" uid="uid://crjts0dhcr5gn" path="res://Fights/1-1/bullet_1.tscn" id="2_04pfy"]
 [ext_resource type="PackedScene" uid="uid://dqjnyuwi6j8f1" path="res://Fights/grace_emitter.tscn" id="2_f63kv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hp78o"]
-size = Vector2(96, 96)
+size = Vector2(192, 192)
 
 [sub_resource type="Animation" id="Animation_tid5w"]
 resource_name = "attack_pattern_1"
@@ -52,28 +52,28 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lnu5a"]
 _data = {
-"attack_pattern_1": SubResource("Animation_tid5w")
+&"attack_pattern_1": SubResource("Animation_tid5w")
 }
 
-[node name="Inedia" type="Area2D" groups=["kills_player"]]
+[node name="Inedia" type="Area2D" unique_id=34791428 groups=["kills_player"]]
 script = ExtResource("1_irvmh")
 attack_pattern_odds_bag = Array[String](["attack_pattern_1"])
 bullet1 = ExtResource("2_04pfy")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=292580693]
 shape = SubResource("RectangleShape2D_hp78o")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1637113138]
 z_index = 10
+scale = Vector2(2, 2)
 texture = ExtResource("1_e3acj")
 
-[node name="GraceEmitter" parent="." instance=ExtResource("2_f63kv")]
-near_end = 70
+[node name="GraceEmitter" parent="." unique_id=134431031 instance=ExtResource("2_f63kv")]
+far_end = 300
+near_end = 140
 max_grace_value = 40
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=134450530]
 callback_mode_method = 1
-libraries = {
-"": SubResource("AnimationLibrary_lnu5a")
-}
+libraries/ = SubResource("AnimationLibrary_lnu5a")
 movie_quit_on_finish = true

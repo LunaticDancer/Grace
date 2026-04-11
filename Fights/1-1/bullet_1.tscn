@@ -1,26 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://crjts0dhcr5gn"]
+[gd_scene format=3 uid="uid://crjts0dhcr5gn"]
 
 [ext_resource type="Texture2D" uid="uid://dun481iur805v" path="res://icon.svg" id="1_nfyl6"]
-[ext_resource type="Script" path="res://Fights/1-1/bullet_straight_trajectory_simple.gd" id="1_qrmka"]
+[ext_resource type="Script" uid="uid://bk01iq50kt144" path="res://Fights/1-1/bullet_straight_trajectory_simple.gd" id="1_qrmka"]
 [ext_resource type="PackedScene" uid="uid://dqjnyuwi6j8f1" path="res://Fights/grace_emitter.tscn" id="2_uo4pj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u50mu"]
+radius = 20.0
 
-[node name="Bullet1" type="Area2D" groups=["kills_player"]]
+[node name="Bullet1" type="Area2D" unique_id=1170302326 groups=["kills_player"]]
 script = ExtResource("1_qrmka")
+speed = 250
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1059444677]
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("1_nfyl6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1281579021]
 shape = SubResource("CircleShape2D_u50mu")
 
-[node name="GraceEmitter" parent="." instance=ExtResource("2_uo4pj")]
-far_end = 100
-near_end = 15
+[node name="GraceEmitter" parent="." unique_id=263932240 instance=ExtResource("2_uo4pj")]
+near_end = 30
 max_grace_value = 30
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=2038512785]
+rect = Rect2(-20, -20, 40, 40)
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
