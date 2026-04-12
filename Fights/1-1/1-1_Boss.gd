@@ -1,6 +1,6 @@
 extends Area2D
 
-@onready var player = get_tree().get_first_node_in_group("player")
+var player
 @onready var game_controller = get_tree().get_first_node_in_group("game_controller")
 
 @export var lurch_speed : Vector2
@@ -14,6 +14,7 @@ var sideways_bullet : PackedScene = load("res://Fights/1-1/side_bullet.tscn")
 @export var sideways_bullet_interval : Vector2
 var sideways_bullet_timer : float = .5
 
+var last_pattern : String = ""
 @export var attack_pattern_odds_bag : Array[String]
 var bullet1 : PackedScene = load("res://Fights/1-1/bullet_1.tscn")
 var spread_bullet : PackedScene = load("res://Fights/1-1/spread_attack_bullet.tscn")
@@ -22,6 +23,7 @@ var turn_around_bullet : PackedScene = load("res://Fights/1-1/turn_at_player_bul
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	player = get_tree().get_first_node_in_group("player")
 	game_controller.boss_killed.connect(die)
 	start_next_attack()
 
@@ -57,7 +59,11 @@ func handle_movement(delta):
 
 func start_next_attack():
 	$AnimationPlayer.stop()
-	$AnimationPlayer.play(attack_pattern_odds_bag.pick_random())
+	var attack = attack_pattern_odds_bag.pick_random()
+	while attack == last_pattern:
+		attack = attack_pattern_odds_bag.pick_random()
+	last_pattern = attack
+	$AnimationPlayer.play(attack)
 
 func multispeed_three_spread_attack():
 	if player == null:
@@ -104,6 +110,7 @@ func star_attack():
 
 func lurch():
 	if player == null:
+		player = get_tree().get_first_node_in_group("player")
 		return
 	movement_direction = (movement_direction + 
 		2 * global_position.direction_to(player.global_position)).normalized()
