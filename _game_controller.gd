@@ -19,6 +19,10 @@ func _ready():
 func _process(delta):
 	process_grace(delta)
 	deal_damage(delta)
+	
+	if Input.is_action_pressed("pause"):
+		_on_pause_button_pressed()
+
 
 func show_main_menu():
 	$MainMenuContainer.show()

@@ -1,5 +1,6 @@
 extends Area2D
 
+@export var manual_speed : float = 500
 var screenResolution : Vector2
 var game_controller
 
@@ -10,6 +11,11 @@ func initialize(p_position : Vector2, p_game_controller):
 	position = p_position
 	screenResolution = Vector2(ProjectSettings.get_setting("display/window/size/viewport_width"),
 		ProjectSettings.get_setting("display/window/size/viewport_height"))
+
+func _process(delta: float) -> void:
+	var movement = Input.get_vector("left", "right", "up", "down")
+	handle_player_movement(movement * (manual_speed * .4 if Input.is_action_pressed("focus")
+		else manual_speed) * delta)
 
 func _input(event):
 	if event is InputEventScreenDrag:
