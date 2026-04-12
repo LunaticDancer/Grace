@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://dun481iur805v" path="res://icon.svg" id="1_e3acj"]
 [ext_resource type="Script" uid="uid://dckv7i78l301f" path="res://Fights/1-1/1-1_Boss.gd" id="1_irvmh"]
-[ext_resource type="PackedScene" uid="uid://crjts0dhcr5gn" path="res://Fights/1-1/bullet_1.tscn" id="2_04pfy"]
 [ext_resource type="PackedScene" uid="uid://dqjnyuwi6j8f1" path="res://Fights/grace_emitter.tscn" id="2_f63kv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hp78o"]
@@ -57,8 +56,11 @@ _data = {
 
 [node name="Inedia" type="Area2D" unique_id=34791428 groups=["kills_player"]]
 script = ExtResource("1_irvmh")
+lurch_speed = Vector2(160, 800)
+lurch_threshold = 0.1
+speed_decay_per_second = Vector2(40, 600)
+turn_rate = 2.0
 attack_pattern_odds_bag = Array[String](["attack_pattern_1"])
-bullet1 = ExtResource("2_04pfy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=292580693]
 shape = SubResource("RectangleShape2D_hp78o")
