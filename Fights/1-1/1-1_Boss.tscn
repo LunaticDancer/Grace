@@ -119,7 +119,7 @@ lurch_speed = Vector2(160, 500)
 lurch_threshold = 0.1
 speed_decay_per_second = Vector2(40, 400)
 turn_rate = 2.0
-sideways_bullet_interval = Vector2(1, 0.1)
+sideways_bullet_interval = Vector2(0.8, 0.2)
 attack_pattern_odds_bag = Array[String](["multispeed_spread", "turn_at_player_circle", "clutter_circle"])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=292580693]

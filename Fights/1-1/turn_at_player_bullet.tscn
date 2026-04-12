@@ -15,7 +15,7 @@ launch_speed = 500
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1059444677]
 z_index = 13
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_6qqte")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1281579021]
@@ -23,7 +23,7 @@ shape = SubResource("CircleShape2D_u50mu")
 
 [node name="GraceEmitter" parent="." unique_id=263932240 instance=ExtResource("3_qlj6j")]
 z_index = 12
-far_end = 300
+far_end = 450
 max_grace_value = 10
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=2038512785]

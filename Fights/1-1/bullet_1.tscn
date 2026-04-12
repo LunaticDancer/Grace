@@ -13,13 +13,14 @@ speed = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1059444677]
 z_index = 4
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("1_nfyl6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1281579021]
 shape = SubResource("CircleShape2D_u50mu")
 
 [node name="GraceEmitter" parent="." unique_id=263932240 instance=ExtResource("2_uo4pj")]
+far_end = 300
 near_end = 30
 max_grace_value = 10
 
