@@ -9,7 +9,7 @@ size = Vector2(192, 192)
 
 [sub_resource type="Animation" id="Animation_tid5w"]
 resource_name = "attack_pattern_1"
-length = 3.704
+length = 2.3666666
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -29,20 +29,11 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.5, 1.3, 2.1, 2.9, 3.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0.16666669, 2.0333333),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"star_attack_straight"
-}, {
-"args": [],
-"method": &"star_attack_opposite"
-}, {
-"args": [],
-"method": &"star_attack_straight"
-}, {
-"args": [],
-"method": &"star_attack_opposite"
+"method": &"multispeed_three_spread_attack"
 }, {
 "args": [],
 "method": &"start_next_attack"
@@ -60,6 +51,7 @@ lurch_speed = Vector2(160, 800)
 lurch_threshold = 0.1
 speed_decay_per_second = Vector2(40, 600)
 turn_rate = 2.0
+sideways_bullet_interval = Vector2(1, 0.1)
 attack_pattern_odds_bag = Array[String](["attack_pattern_1"])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=292580693]
