@@ -9,7 +9,7 @@ size = Vector2(192, 192)
 
 [sub_resource type="Animation" id="Animation_s3i5p"]
 resource_name = "clutter_circle"
-length = 1.0666667
+length = 0.76666665
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -29,7 +29,7 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.06666667, 0.93333334),
+"times": PackedFloat32Array(0.06666667, 0.6666667),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -75,7 +75,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_4hm4n"]
 resource_name = "turn_at_player_circle"
-length = 2.2666667
+length = 1.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -95,7 +95,7 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.16666667, 2.0333333),
+"times": PackedFloat32Array(0.16666667, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -115,9 +115,9 @@ _data = {
 
 [node name="Inedia" type="Area2D" unique_id=34791428 groups=["kills_player"]]
 script = ExtResource("1_irvmh")
-lurch_speed = Vector2(160, 800)
+lurch_speed = Vector2(160, 500)
 lurch_threshold = 0.1
-speed_decay_per_second = Vector2(40, 600)
+speed_decay_per_second = Vector2(40, 400)
 turn_rate = 2.0
 sideways_bullet_interval = Vector2(1, 0.1)
 attack_pattern_odds_bag = Array[String](["multispeed_spread", "turn_at_player_circle", "clutter_circle"])

@@ -76,7 +76,7 @@ func init_boss_healthbar(value : float):
 
 func process_grace(delta):
 	if cummulative_grace_this_frame > current_grace:
-		current_grace = lerp(current_grace, cummulative_grace_this_frame, 0.5)
+		current_grace = lerp(current_grace, cummulative_grace_this_frame, delta)
 	else:
 		current_grace -= 10 * delta
 	

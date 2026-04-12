@@ -12,6 +12,7 @@ script = ExtResource("1_qrmka")
 speed = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1059444677]
+z_index = 4
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_nfyl6")
 

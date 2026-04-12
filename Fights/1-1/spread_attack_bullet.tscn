@@ -12,6 +12,7 @@ script = ExtResource("1_2uprp")
 speed = 250
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1059444677]
+z_index = 11
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_hy3c0")
 
