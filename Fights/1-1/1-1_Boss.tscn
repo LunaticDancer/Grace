@@ -42,7 +42,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_tid5w"]
 resource_name = "multispeed_spread"
-length = 1.7
+length = 2.2666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -62,7 +62,7 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.16666669, 1.4666667),
+"times": PackedFloat32Array(0.16666669, 2),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -75,7 +75,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_4hm4n"]
 resource_name = "turn_at_player_circle"
-length = 1.7333333
+length = 2.2666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -95,7 +95,7 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.16666667, 1.6),
+"times": PackedFloat32Array(0.16666667, 2.0333333),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],

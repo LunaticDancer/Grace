@@ -19,7 +19,6 @@ texture = ExtResource("1_nfyl6")
 shape = SubResource("CircleShape2D_u50mu")
 
 [node name="GraceEmitter" parent="." unique_id=263932240 instance=ExtResource("2_uo4pj")]
-far_end = 100
 near_end = 30
 max_grace_value = 10
 

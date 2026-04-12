@@ -9,7 +9,7 @@ radius = 15.0
 
 [node name="Bullet" type="Area2D" unique_id=1170302326 groups=["kills_player"]]
 script = ExtResource("1_usoac")
-speed = 700
+speed = 600
 speed_decay = 1000
 launch_speed = 500
 
@@ -22,6 +22,7 @@ shape = SubResource("CircleShape2D_u50mu")
 
 [node name="GraceEmitter" parent="." unique_id=263932240 instance=ExtResource("3_qlj6j")]
 z_index = 12
+far_end = 300
 max_grace_value = 10
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=2038512785]

@@ -20,7 +20,6 @@ texture = ExtResource("2_m37fd")
 shape = SubResource("CircleShape2D_u50mu")
 
 [node name="GraceEmitter" parent="." unique_id=263932240 instance=ExtResource("3_w68g6")]
-far_end = 150
 near_end = 30
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=2038512785]
