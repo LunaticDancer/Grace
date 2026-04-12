@@ -1,27 +1,27 @@
-[gd_scene format=3 uid="uid://dhcs3ewasnbb"]
+[gd_scene format=3 uid="uid://bn48wdh7pk740"]
 
-[ext_resource type="Script" uid="uid://nmbonr1lfkl2" path="res://Fights/1-1/bullet_straight_trajectory_var_speed.gd" id="1_2uprp"]
-[ext_resource type="Texture2D" uid="uid://dun481iur805v" path="res://icon.svg" id="2_hy3c0"]
-[ext_resource type="PackedScene" uid="uid://dqjnyuwi6j8f1" path="res://Fights/grace_emitter.tscn" id="3_2lbq7"]
+[ext_resource type="Script" uid="uid://bnq5aipdwkjfc" path="res://Fights/1-1/bullet_turn_at_player.gd" id="1_usoac"]
+[ext_resource type="Texture2D" uid="uid://dun481iur805v" path="res://icon.svg" id="2_6qqte"]
+[ext_resource type="PackedScene" uid="uid://dqjnyuwi6j8f1" path="res://Fights/grace_emitter.tscn" id="3_qlj6j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u50mu"]
-radius = 20.0
+radius = 15.0
 
 [node name="Bullet" type="Area2D" unique_id=1170302326 groups=["kills_player"]]
-script = ExtResource("1_2uprp")
-speed = 250
+script = ExtResource("1_usoac")
+speed = 700
+speed_decay = 1000
+launch_speed = 500
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1059444677]
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("2_hy3c0")
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_6qqte")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1281579021]
 shape = SubResource("CircleShape2D_u50mu")
 
-[node name="GraceEmitter" parent="." unique_id=263932240 instance=ExtResource("3_2lbq7")]
+[node name="GraceEmitter" parent="." unique_id=263932240 instance=ExtResource("3_qlj6j")]
 z_index = 12
-far_end = 100
-near_end = 30
 max_grace_value = 10
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=2038512785]

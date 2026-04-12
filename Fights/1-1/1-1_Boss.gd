@@ -12,11 +12,12 @@ var movement_direction = Vector2.DOWN
 
 var sideways_bullet : PackedScene = load("res://Fights/1-1/side_bullet.tscn")
 @export var sideways_bullet_interval : Vector2
-var sideways_bullet_timer : float = 2
+var sideways_bullet_timer : float = .5
 
 @export var attack_pattern_odds_bag : Array[String]
 var bullet1 : PackedScene = load("res://Fights/1-1/bullet_1.tscn")
 var spread_bullet : PackedScene = load("res://Fights/1-1/spread_attack_bullet.tscn")
+var turn_around_bullet : PackedScene = load("res://Fights/1-1/turn_at_player_bullet.tscn")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -62,7 +63,7 @@ func multispeed_three_spread_attack():
 	if player == null:
 		return
 	var dir_to_player = global_position.direction_to(player.global_position)
-	for i in range(1,3 + int(game_controller.current_grace/20)):
+	for i in range(1,4 + int(game_controller.current_grace/20)):
 		var bullet = spread_bullet.instantiate()
 		bullet.global_position = global_position
 		bullet.init( dir_to_player, 100 * i)
@@ -76,22 +77,20 @@ func multispeed_three_spread_attack():
 		bullet.init( Vector2.from_angle(dir_to_player.angle() - PI/4), 100 * i)
 		add_sibling(bullet)
 
-func star_attack_straight():
-	return
-	var num = 13
+func turn_at_player_circle():
+	var num = lerp(12, 32, game_controller.current_grace/100)
 	for i in num:
-		var bullet = bullet1.instantiate()
+		var bullet = turn_around_bullet.instantiate()
 		bullet.global_position = global_position
 		bullet.init( Vector2(cos((2 * PI) / num * i), sin((2 * PI) / num * i)) )
 		add_sibling(bullet)
 
-func star_attack_opposite():
-	return
-	var num = 13
+func star_attack():
+	var num = lerp(8, 40, game_controller.current_grace/100)
 	for i in num:
 		var bullet = bullet1.instantiate()
 		bullet.global_position = global_position
-		bullet.init( Vector2(cos((2 * PI) / num * i + PI/num), sin((2 * PI) / num * i + PI/num)) )
+		bullet.init( Vector2(cos((2 * PI) / num * i), sin((2 * PI) / num * i)) )
 		add_sibling(bullet)
 
 func lurch():

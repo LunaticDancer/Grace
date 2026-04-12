@@ -74,7 +74,7 @@ func process_grace(delta):
 	if cummulative_grace_this_frame > current_grace:
 		current_grace = lerp(current_grace, cummulative_grace_this_frame, 0.5)
 	else:
-		current_grace -= 20 * delta
+		current_grace -= 10 * delta
 	
 	current_grace = clamp(current_grace, 0, 100)
 	update_grace_meter()
