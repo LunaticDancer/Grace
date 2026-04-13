@@ -421,7 +421,7 @@ expand_icon = true
 
 [node name="GameUiContainer" type="Control" parent="." unique_id=938616955]
 visible = false
-z_index = 1000
+z_index = -1000
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -432,6 +432,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PauseMenu" type="Panel" parent="GameUiContainer" unique_id=2004454009]
+z_index = 2000
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -509,6 +510,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="GameOverScreen" type="Panel" parent="GameUiContainer" unique_id=60894567]
+z_index = 2000
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -586,6 +588,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="VictoryScreen" type="Panel" parent="GameUiContainer" unique_id=635948531]
+z_index = 2000
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
