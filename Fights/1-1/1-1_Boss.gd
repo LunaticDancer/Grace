@@ -91,6 +91,15 @@ func multispeed_three_spread_attack():
 			bullet.global_position = global_position
 			bullet.init( Vector2.from_angle(dir_to_player.angle() - PI/8), 100 * i)
 			add_sibling(bullet)
+		if game_controller.current_grace > 80:
+			bullet = spread_bullet.instantiate()
+			bullet.global_position = global_position
+			bullet.init( Vector2.from_angle(dir_to_player.angle() + PI/8 + PI/16), 100 * i)
+			add_sibling(bullet)
+			bullet = spread_bullet.instantiate()
+			bullet.global_position = global_position
+			bullet.init( Vector2.from_angle(dir_to_player.angle() - PI/8 - PI/16), 100 * i)
+			add_sibling(bullet)
 
 func turn_at_player_circle():
 	var num = lerp(12, 32, game_controller.current_grace/100)
