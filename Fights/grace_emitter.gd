@@ -17,5 +17,5 @@ func _process(delta):
 	var distance = global_position.distance_to(player.global_position)
 	if distance > far_end:
 		return
-	game_controller.add_cummulative_grace(clamp(inverse_lerp(far_end, near_end, 
-		distance), 0, 1) * max_grace_value)
+	game_controller.add_cummulative_grace(pow(clamp(inverse_lerp(far_end, near_end, 
+		distance), 0, 1), 2) * max_grace_value)
