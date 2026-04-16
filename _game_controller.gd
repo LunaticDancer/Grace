@@ -8,6 +8,7 @@ signal boss_killed
 var current_fight_data
 var boss_hp : float
 var boss_max_hp : float
+var timer : float
 
 var current_grace : float
 var cummulative_grace_this_frame : float
@@ -19,10 +20,17 @@ func _ready():
 func _process(delta):
 	process_grace(delta)
 	deal_damage(delta)
+	update_timer(delta)
 	
 	if Input.is_action_pressed("pause"):
 		_on_pause_button_pressed()
 
+func update_timer(delta):
+	if boss_hp < 0:
+		return
+	
+	timer += delta
+	$GameUiContainer/CompletionTimer.text = "%.3f" % timer
 
 func show_main_menu():
 	$MainMenuContainer.show()
@@ -61,6 +69,7 @@ func init_level(level_data : Resource):
 	player.initialize($PlayerSpawnPosition.position, self)
 	$GameWorld.add_child(player)
 	current_grace = 0
+	timer = 0
 	var boss = level_data.boss_scene.instantiate()
 	boss.global_position = $BossSpawnPosition.global_position
 	$GameWorld.add_child(boss)
